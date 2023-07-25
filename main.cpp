@@ -4,6 +4,8 @@
 #include <vector>
 #include <unordered_map>
 #include <conio.h>
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -389,7 +391,28 @@ void barangKeluar(){
         cout << " " <<endl;
     }
 
+}
 
+void laporanBarang(){
+    ofstream myFile;
+
+    myFile.open("laporan.csv");
+
+    bantu = head;
+    if (isEmpty() == false){
+        myFile <<  "Nama," << "Kode," <<  "Stok," <<  "Harga," <<  "Kategori" << endl;
+        while (bantu != NULL){
+            myFile << bantu->nama << ","  << bantu->kode << "," << bantu->stok << "," <<  bantu->harga << "," <<  bantu->kategori << endl;
+            bantu = bantu->next;
+        }
+        myFile << endl;
+
+        cout << "Berhasil mengexport data barang";
+    }
+    else
+    {
+        myFile << "Barang masih kosong" << endl;
+    }
 }
 
 int main(){
@@ -412,7 +435,8 @@ int main(){
         cout << " 7. Hapus Semua Barang" << endl;
         cout << " 8. Barang Keluar" << endl;
         cout << " 9. Tampil Barang Keluar" << endl;
-        cout << " 10. Exit" << endl;
+        cout << " 10. Export Excel (Data Barang)" << endl;
+        cout << " 11. Exit" << endl;
         cout << "======================================" << endl;
         cout << " Pilihan : ";
         cin >> pilihan;
@@ -454,6 +478,9 @@ int main(){
             tampilBarangKeluar();
             break;
         case 10:
+            laporanBarang();
+            break;
+        case 11:
             exit(0);
             break;
         default:
