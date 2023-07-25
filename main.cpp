@@ -304,8 +304,7 @@ bool kosong(){
     return front == NULL;
 }
 
-void searchByKode(vector<InventoryBarang> &data, string target, int qty)
-{
+void searchByKode(vector<InventoryBarang> &data, string target, int qty){
     bool found = false;
 
     for (const InventoryBarang &item : data){
